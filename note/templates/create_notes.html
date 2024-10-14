@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Notes</title>
+    <style>
+        /* Styling the form inputs */
+        input[type="text"], textarea {
+            display: block; /* Ensures they are block-level elements */
+            width: 100%; /* Full width for better layout */
+            margin-top: 10px; /* Adds space between the elements */
+            padding: 10px; /* Adds padding inside the fields */
+            font-size: 16px; /* Increases font size for readability */
+        }
+        
+        /* Textarea specific height */
+        textarea {
+            height: 150px; /* Set a specific height for the content box */
+        }
+
+        button {
+            display: block;
+            margin-top: 20px; /* Adds space above the submit button */
+            padding: 10px 20px;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+    <h2>Create Notes for {{ user_info.first_name }} {{ user_info.last_name }}</h2>
+
+    <form method="POST" action="{% url 'create_notes' %}">
+        {% csrf_token %}
+        <input type="text" name="title" placeholder="Notes Title" required>
+        <textarea name="content" placeholder="Notes Content"></textarea>
+        <button type="submit">Create</button>
+    </form>
+</body>
+</html>
